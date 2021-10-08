@@ -11,14 +11,14 @@ public class LogWriter {
 
         LocalDate today = LocalDate.now();
         LocalTime now = LocalTime.now();
-        try(PrintWriter logWriter = new PrintWriter(new FileWriter("./log.txt"), true)){
+        try (PrintWriter logWriter = new PrintWriter(new FileWriter(new File("./log.txt"), true))){
 
             String printToday = today.toString();
             String printTime = now.toString().substring(0, now.toString().length()-10);
             String printAmount = amount.toString();
             String printBalance = balance.toString();
 
-            logWriter.println(printToday + " " + printTime + " " + actionType + " " + printAmount + " " + printBalance);
+            logWriter.println(printToday + " " + printTime + " " + actionType + " $" + printAmount + " $" + printBalance);
 
 
         } catch (Exception e){

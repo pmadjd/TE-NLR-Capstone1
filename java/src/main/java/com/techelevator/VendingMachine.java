@@ -134,8 +134,10 @@ public class VendingMachine {
                System.out.println(value);
                System.out.println("Remaining balance: " + balance);
 
+               String productName = inventory.get(userInput).getName();
+               String logInfo = productName + " " + userInput;
                try {
-                   log.writer("PURCHASE", productPrice, balance);
+                   log.writer(logInfo, productPrice, balance);
                } catch (FileNotFoundException e) {
                    e.printStackTrace();
                }
