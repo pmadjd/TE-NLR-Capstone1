@@ -1,8 +1,10 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 public class Drink extends VendingMachineItem{
 
-    public Drink(String name, double price, String sound, int quantity, String slotID) {
-        super(name, price, "Glug Glug, Yum!", quantity, slotID);
+    public Drink(String name, BigDecimal price) {
+        super(name, price);
     }
 }

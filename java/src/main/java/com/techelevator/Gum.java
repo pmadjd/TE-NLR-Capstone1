@@ -1,9 +1,11 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 public class Gum extends VendingMachineItem{
 
-    public Gum(String name, double price, String sound, int quantity, String slotID) {
-        super(name, price, "Chew Chew, Yum!", quantity, slotID);
+    public Gum(String name, BigDecimal price) {
+        super(name, price);
     }
 }
 

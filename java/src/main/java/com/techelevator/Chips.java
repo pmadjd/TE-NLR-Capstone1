@@ -1,9 +1,11 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 public class Chips extends VendingMachineItem{
 
-    public Chips(String name, double price, String sound, int quantity, String slotID) {
-        super(name, price, "Crunch Crunch, Yum!", quantity, slotID);
+    public Chips(String name, BigDecimal price) {
+        super(name, price);
     }
 }
 

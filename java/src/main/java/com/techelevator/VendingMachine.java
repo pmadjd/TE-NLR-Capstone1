@@ -1,9 +1,64 @@
 package com.techelevator;
 
 import javax.sound.midi.SysexMessage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class VendingMachine {
+
+    private Map<String, VendingMachineItem> inventory = new LinkedHashMap<String, VendingMachineItem>();
+
+    public VendingMachine(){
+        inventoryReader();
+    }
+
+    public void inventoryReader() {
+
+        try (Scanner inputScanner = new Scanner(new File("vendingmachine.csv"))) {
+            //File inputFile = new File("vendingmachine.csv");
+            //Scanner inputScanner = new Scanner(new File("vendingmachine.csv"));
+
+            while (inputScanner.hasNextLine()) {
+                String line = inputScanner.nextLine();
+
+                try {
+                    String[] array = line.split("\\|");
+                    String slot = array[0];
+                    String name = array[1];
+                    BigDecimal price = new BigDecimal(array[2]);
+                    String type = array[3];
+                    //System.out.println(array[1].trim());
+
+                    VendingMachineItem vendingMachineItem = null;
+                    if(type.equals("Chip")){
+                        vendingMachineItem = new Chips(name, price);
+                    }
+                    if(type.equals("Candy")){
+                        vendingMachineItem = new Candy(name, price);
+                    }
+                    if(type.equals("Gum")){
+                        vendingMachineItem = new Gum(name, price);
+                    }
+                    if(type.equals("Drink")){
+                        vendingMachineItem = new Drink(name, price);
+                    }
+
+                    inventory.put(slot,vendingMachineItem);
+
+                } catch (Exception e)
+                {
+                    System.out.println(e);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     BigDecimal balance = new BigDecimal(0.00);
 
@@ -38,4 +93,12 @@ public class VendingMachine {
 
         System.out.println("Current balance is $" + balance);
     }
+
+    public Collection<String> getSlots(){return inventory.keySet();}
+
+    public VendingMachineItem getItem(String slot) {
+        return inventory.get(slot);
+    }
+
+
 }
