@@ -4,6 +4,7 @@ import com.techelevator.view.Menu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
@@ -49,8 +50,19 @@ public class VendingMachineCLI {
 					} else if (nextChoice.equals(SUB_MENU_OPTION_SELECT_PRODUCT)) {
 
 						handleDisplayVendingItems();
+						System.out.println("Please enter SlotID of desired item.");
+						Scanner input = new Scanner(System.in);
+						String userInput = input.nextLine();
+
+						currentMachine.productSelection(userInput);
 
 					} else if (nextChoice.equals(SUB_MENU_OPTION_FINISH_TRANSACTION)) {
+						double dBalance = currentMachine.convertedBalance();
+						int[] changeToGive = currentMachine.getChange(dBalance);
+						System.out.println("Thank you for your purchase. Here is your change.");
+						System.out.println(changeToGive[0] + " quarters, " + changeToGive[1] + " dimes, " + changeToGive[2] + " nickels, " + changeToGive[3] + " pennies.");
+						currentMachine.setBalance(BigDecimal.valueOf(0.00));
+						System.out.println("Current balance: " + currentMachine.getBalance());
 						break;
 
 					}
