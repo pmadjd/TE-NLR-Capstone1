@@ -17,7 +17,7 @@ public class VendingMachineCLI {
 	private static final String[] SUB_MENU_OPTIONS = {SUB_MENU_OPTION_FEED_MONEY, SUB_MENU_OPTION_SELECT_PRODUCT, SUB_MENU_OPTION_FINISH_TRANSACTION};
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT };
 
-	VendingMachine currentMachine = new VendingMachine();
+	private VendingMachine currentMachine = new VendingMachine();
 
 	private Menu menu;
 
@@ -48,6 +48,8 @@ public class VendingMachineCLI {
 
 					} else if (nextChoice.equals(SUB_MENU_OPTION_SELECT_PRODUCT)) {
 
+						handleDisplayVendingItems();
+
 					} else if (nextChoice.equals(SUB_MENU_OPTION_FINISH_TRANSACTION)) {
 						break;
 
@@ -61,7 +63,7 @@ public class VendingMachineCLI {
 
 	private void handleDisplayVendingItems(){
 		for(String slot : currentMachine.getSlots()){
-			System.out.printf("%-5s %s\n", slot, currentMachine.getItem(slot));
+			System.out.println(slot + " " + currentMachine.getItem(slot) + " Stock: " + currentMachine.getItem(slot).getRemainingCount());
 		}
 	}
 

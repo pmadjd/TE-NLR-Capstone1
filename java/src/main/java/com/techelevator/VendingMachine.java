@@ -20,8 +20,6 @@ public class VendingMachine {
     public void inventoryReader() {
 
         try (Scanner inputScanner = new Scanner(new File("vendingmachine.csv"))) {
-            //File inputFile = new File("vendingmachine.csv");
-            //Scanner inputScanner = new Scanner(new File("vendingmachine.csv"));
 
             while (inputScanner.hasNextLine()) {
                 String line = inputScanner.nextLine();
@@ -32,7 +30,6 @@ public class VendingMachine {
                     String name = array[1];
                     BigDecimal price = new BigDecimal(array[2]);
                     String type = array[3];
-                    //System.out.println(array[1].trim());
 
                     VendingMachineItem vendingMachineItem = null;
                     if(type.equals("Chip")){
