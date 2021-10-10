@@ -127,7 +127,7 @@ public class VendingMachine {
         }
         if(inventory.containsKey(userInput)){
             BigDecimal productPrice = (inventory.get(userInput).getPrice());
-           String value =  inventory.get(userInput).purchase();
+            String value =  inventory.get(userInput).purchase();
            if(!value.equals("SOLD OUT.") && ((productPrice.compareTo(balance) == -1) || (productPrice.compareTo(balance) == -0))){
                balance = balance.subtract(productPrice);
 
